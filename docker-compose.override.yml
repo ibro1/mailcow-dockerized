@@ -8,13 +8,24 @@ services:
       sh -c "
         apk add --no-cache openssl &&
         mkdir -p /ssl &&
-        openssl req -x509 -newkey rsa:4096 -keyout /ssl/key.pem -out /ssl/cert.pem -days 365 -nodes -subj '/C=NG/ST=Lagos/L=Lagos/O=TIUC/OU=IT/CN=mail.tiuc.edu.ng' &&
-        chmod 600 /ssl/key.pem /ssl/cert.pem
+        if [ ! -f /ssl/cert.pem ]; then
+          openssl req -x509 -newkey rsa:4096 -keyout /ssl/key.pem -out /ssl/cert.pem -days 365 -nodes -subj '/C=NG/ST=Lagos/L=Lagos/O=TIUC/OU=IT/CN=mail.tiuc.edu.ng' &&
+          chmod 600 /ssl/key.pem /ssl/cert.pem
+        fi
       "
     restart: "no"
 
-  # Make nginx depend on SSL generation
-  nginx-mailcow:
+  # Make all services depend on SSL generation
+  unbound-mailcow:
     depends_on:
       ssl-generator:
         condition: service_completed_successfully
+
+  mysql-mailcow:
+    depends_on:
+      ssl-generator:
+        condition: service_completed_successfully
+      unbound-mailcow:
+        condition: service_started
+      netfilter-mailcow:
+        condition: service_started
