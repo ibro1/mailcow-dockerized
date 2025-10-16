@@ -1,0 +1,153 @@
+# ------------------------------
+# mailcow web ui configuration
+# ------------------------------
+MAILCOW_HOSTNAME=${MAILCOW_HOSTNAME}
+
+# Password hash algorithm
+MAILCOW_PASS_SCHEME=BLF-CRYPT
+
+# ------------------------------
+# SQL database configuration
+# ------------------------------
+DBNAME=${DBNAME}
+DBUSER=${DBUSER}
+DBPASS=${DBPASS}
+DBROOT=${DBROOT}
+
+# ------------------------------
+# REDIS configuration
+# ------------------------------
+REDISPASS=${REDISPASS}
+
+# ------------------------------
+# HTTP/S Bindings
+# ------------------------------
+HTTP_PORT=8080
+HTTP_BIND=
+HTTPS_PORT=8443
+HTTPS_BIND=
+HTTP_REDIRECT=y
+
+# ------------------------------
+# Other bindings
+# ------------------------------
+SMTP_PORT=25
+SMTPS_PORT=465
+SUBMISSION_PORT=587
+IMAP_PORT=143
+IMAPS_PORT=993
+POP_PORT=110
+POPS_PORT=995
+SIEVE_PORT=4190
+DOVEADM_PORT=127.0.0.1:19991
+SQL_PORT=127.0.0.1:13306
+REDIS_PORT=127.0.0.1:7654
+
+# Your timezone
+TZ=Africa/Lagos
+
+# Fixed project name
+COMPOSE_PROJECT_NAME=mailcowdockerized
+
+# Used Docker Compose version
+DOCKER_COMPOSE_VERSION=native
+
+# Set this to "allow" to enable the anyone pseudo user
+ACL_ANYONE=disallow
+
+# Garbage collector cleanup
+MAILDIR_GC_TIME=7200
+
+# Additional SAN for the certificate
+ADDITIONAL_SAN=
+
+# Obtain certificates for autodiscover.* and autoconfig.* domains
+AUTODISCOVER_SAN=y
+
+# Additional server names for mailcow UI
+ADDITIONAL_SERVER_NAMES=
+
+# Skip running ACME (acme-mailcow, Let's Encrypt certs) - y/n
+SKIP_LETS_ENCRYPT=n
+
+# Create separate certificates for all domains - y/n
+ENABLE_SSL_SNI=n
+
+# Skip IPv4 check in ACME container - y/n
+SKIP_IP_CHECK=n
+
+# Skip HTTP verification in ACME container - y/n
+SKIP_HTTP_VERIFICATION=n
+
+# Skip Unbound (DNS Resolver) Healthchecks - y/n
+SKIP_UNBOUND_HEALTHCHECK=n
+
+# Skip ClamAV (clamd-mailcow) anti-virus - y/n
+SKIP_CLAMD=n
+
+# Skip Olefy (olefy-mailcow) anti-virus for Office documents - y/n
+SKIP_OLEFY=n
+
+# Skip SOGo - y/n
+SKIP_SOGO=n
+
+# Skip FTS (Fulltext Search) for Dovecot - y/n
+SKIP_FTS=n
+
+# Dovecot Indexing (FTS) Process maximum heap size in MB
+FTS_HEAP=128
+
+# Controls how many processes the Dovecot indexing process can spawn at max
+FTS_PROCS=1
+
+# Allow admins to log into SOGo as email user
+ALLOW_ADMIN_EMAIL_LOGIN=n
+
+# Enable watchdog to restart unhealthy containers
+USE_WATCHDOG=y
+
+# Notify about banned IP
+WATCHDOG_NOTIFY_BAN=n
+
+# Send a notification when the watchdog is started
+WATCHDOG_NOTIFY_START=y
+
+# Checks if mailcow is an open relay
+WATCHDOG_EXTERNAL_CHECKS=n
+
+# Enable watchdog verbose logging
+WATCHDOG_VERBOSE=n
+
+# Max log lines per service to keep in Redis logs
+LOG_LINES=9999
+
+# Internal IPv4 /24 subnet
+IPV4_NETWORK=172.22.1
+
+# Internal IPv6 subnet
+IPV6_NETWORK=fd4d:6169:6c63:6f77::/64
+
+# mail_home is ~/Maildir
+MAILDIR_SUB=Maildir
+
+# SOGo session timeout in minutes
+SOGO_EXPIRE_SESSION=480
+
+# SOGo URL encryption key (exactly 16 characters)
+SOGO_URL_ENCRYPTION_KEY=${SOGO_URL_ENCRYPTION_KEY}
+
+# DOVECOT_MASTER_USER and DOVECOT_MASTER_PASS
+DOVECOT_MASTER_USER=
+DOVECOT_MASTER_PASS=
+
+# WebAuthn device manufacturer verification
+WEBAUTHN_ONLY_TRUSTED_VENDORS=n
+
+# Spamhaus Data Query Service Key
+SPAMHAUS_DQS_KEY=
+
+# IPv6 Controller Section
+ENABLE_IPV6=true
+
+# Prevent netfilter from setting isolation rule
+DISABLE_NETFILTER_ISOLATION_RULE=n
